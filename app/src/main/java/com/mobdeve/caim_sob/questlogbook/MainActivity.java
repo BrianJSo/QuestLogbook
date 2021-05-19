@@ -3,8 +3,11 @@ package com.mobdeve.caim_sob.questlogbook;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button questMakerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
