@@ -26,4 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <com.mobdeve.caim_sob.questlogbook.MovableFloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
 </LinearLayout>
