@@ -55,10 +55,12 @@
         android:layout_height="49dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/switch1"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         app:singleLine="true"
-        app:singleSelection="true">
+        app:singleSelection="true"
+        tools:visibility="invisible">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip5"
@@ -102,8 +104,10 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:inputType="time"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+        tools:visibility="invisible" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -113,8 +117,10 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="date"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime"
+        tools:visibility="invisible" />
 
     <EditText
         android:id="@+id/editTextTextPersonName3"
