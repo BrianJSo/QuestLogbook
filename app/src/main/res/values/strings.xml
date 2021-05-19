@@ -8,4 +8,5 @@
     <string name="qmf_timed">Timed</string>
     <string name="qmf_title">Enter Quest Title</string>
     <string name="qmf_desc">Enter Quest Description</string>
+    <string name="qmf_note">Notes</string>
 </resources>
