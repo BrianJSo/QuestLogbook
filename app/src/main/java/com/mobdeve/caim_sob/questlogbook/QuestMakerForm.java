@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -20,6 +21,7 @@ public class QuestMakerForm extends AppCompatActivity {
     private Chip sched;
     private EditText hour;
     private EditText date;
+    private Button post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class QuestMakerForm extends AppCompatActivity {
         this.sched = findViewById(R.id.formScheduleBtn);
         this.hour = findViewById(R.id.formTimeET);
         this.date = findViewById(R.id.formDateET);
+        this.post = findViewById(R.id.formPostBtn);
 
         rpt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -45,6 +48,9 @@ public class QuestMakerForm extends AppCompatActivity {
                     questType.setVisibility(View.GONE);
                     hour.setVisibility(View.GONE);
                     date.setVisibility(View.GONE);
+                    daily.setChecked(false);
+                    weekly.setChecked(false);
+                    sched.setChecked(false);
                 }
             }
         });
@@ -67,6 +73,13 @@ public class QuestMakerForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 date.setVisibility(View.VISIBLE);
+            }
+        });
+
+        post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
