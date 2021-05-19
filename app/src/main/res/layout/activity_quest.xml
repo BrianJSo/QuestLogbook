@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".QuestActivity">
+
+    <TextView
+        android:id="@+id/viewQuestTitleTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quest Title"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/viewQuestDescTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/viewQuestActivationTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activation" />
+
+    <EditText
+        android:id="@+id/viewQuestNotesTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Notes:"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/updateNotesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Notes"
+        android:visibility="gone" />
+
+</LinearLayout>
