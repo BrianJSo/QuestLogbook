@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Quest Logbook</string>
+    <string name="qmf_new_todo">New Quest</string>
+    <string name="qmf_repeat">Repeatable?</string>
+    <string name="qmf_post">Post</string>
+    <string name="qmf_daily">Daily</string>
+    <string name="qmf_weekly">Weekly</string>
+    <string name="qmf_timed">Timed</string>
+    <string name="qmf_title">Enter Quest Title</string>
+    <string name="qmf_desc">Enter Quest Description</string>
+    <string name="qmf_note">Notes</string>
 </resources>
