@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/formTitleTF"
         android:layout_width="250dp"
         android:layout_height="41dp"
         android:layout_marginStart="20dp"
@@ -30,24 +30,24 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/formPostBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:text="@string/qmf_post"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toEndOf="@+id/formTitleTF"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/formRepeatBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:text="@string/qmf_repeat"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/formTitleTF" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
@@ -56,36 +56,39 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/switch1"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toEndOf="@+id/formRepeatBtn"
+        app:layout_constraintTop_toBottomOf="@+id/formTitleTF"
         app:singleLine="true"
         app:singleSelection="true"
         tools:visibility="invisible">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip5"
+            android:id="@+id/formDailyBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/qmf_daily"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip6"
+            android:id="@+id/formWeeklyBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/qmf_weekly"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            app:checkedIconVisible="true" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip7"
+            android:id="@+id/formTimedBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/qmf_timed"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            app:checkedIconVisible="true" />
     </com.google.android.material.chip.ChipGroup>
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/formDescTF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -97,12 +100,13 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
     <EditText
-        android:id="@+id/editTextTime"
+        android:id="@+id/formTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="15dp"
         android:ems="10"
+        android:hint="@string/qmf_time_hint"
         android:inputType="time"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,10 +120,11 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/qmf_date_hint"
         android:inputType="date"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime"
+        app:layout_constraintTop_toBottomOf="@+id/formTime"
         tools:visibility="invisible" />
 
     <EditText
@@ -132,6 +137,6 @@
         android:hint="@string/qmf_note"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/formDescTF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
