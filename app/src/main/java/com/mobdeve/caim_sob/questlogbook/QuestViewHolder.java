@@ -27,11 +27,9 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(itemView.getContext(), QuestActivity.class);
-//                itemView.getContext().startActivity(i);
+
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(itemView.getContext());
-// ...Irrelevant code for customizing the buttons and title
-//                LayoutInflater inflater = this.getLayoutInflater();
+
                 LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
                 View dialogView = inflater.inflate(R.layout.activity_quest, (ViewGroup) itemView, false);
                 dialogBuilder.setView(dialogView);
