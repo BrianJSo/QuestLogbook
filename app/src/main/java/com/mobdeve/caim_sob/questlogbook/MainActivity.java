@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private QuestInstanceDBHelper questInstanceDb;
 
     private ArrayList questList;
-    private Button toQuestMakerBtn;
+    private Button toQuestTemplateBtn;
     private FloatingActionButton toQuickCreateBtn;
     private RecyclerView activeQuestsRv;
     private LinearLayoutManager linearLayoutManager;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         this.questList = new ArrayList<Quest>();
         populateList(questList);
 
-        this.toQuestMakerBtn = findViewById(R.id.toQuestMakerBtn);
+        this.toQuestTemplateBtn = findViewById(R.id.toQuestTemplateBtn);
         this.toQuickCreateBtn = findViewById(R.id.toQuickCreateBtn);
         this.activeQuestsRv = findViewById(R.id.activeQuestsRv);
 
@@ -53,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 ItemTouchHelper(new SwipeToDeleteCallback(this.questAdapter));
         itemTouchHelper.attachToRecyclerView(this.activeQuestsRv);
 
-        this.toQuestMakerBtn.setOnClickListener(new View.OnClickListener() {
+        this.toQuestTemplateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, QuestMakerForm.class);
+                Intent i = new Intent(MainActivity.this, QuestTemplates.class);
                 startActivity(i);
             }
         });

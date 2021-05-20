@@ -24,4 +24,5 @@
     <string name="quest_notes">Notes</string>
     <string name="quest_update_notes">Update Notes</string>
     <string name="quest_maker">Quest Maker</string>
+    <string name="quest_templates">Quest Templates</string>
 </resources>

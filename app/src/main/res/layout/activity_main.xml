@@ -20,11 +20,11 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/toQuestMakerBtn"
+                android:id="@+id/toQuestTemplateBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/quest_maker" />
+                android:text="@string/quest_templates" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
