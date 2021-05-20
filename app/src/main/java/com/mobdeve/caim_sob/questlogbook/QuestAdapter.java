@@ -1,5 +1,6 @@
 package com.mobdeve.caim_sob.questlogbook;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +13,18 @@ import java.util.ArrayList;
 
 public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
 
+    private QuestInstanceDBHelper questInstanceDb;
+    private Context context;
     private ArrayList<Quest> data;
-    public QuestAdapter(ArrayList data){this.data = data; }
+    public QuestAdapter(ArrayList data){
+        this.data = data;
+    }
 
     @NonNull
     @Override
     public QuestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        this.context = parent.getContext();
+        questInstanceDb = new QuestInstanceDBHelper(this.context);
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.quest, parent, false);
         QuestViewHolder questViewHolder = new QuestViewHolder(view);
@@ -37,8 +44,12 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
         return data.size();
     }
 
-    public void deleteItem(int position) {
-        this.data.remove(position);
-        notifyItemRemoved(position);
+    public void deleteQuestInstance(int position) {
+        int id = data.get(position).getId();
+        Boolean success = this.questInstanceDb.deleteQuestInstanceData(id);
+        if (success){
+            this.data.remove(position);
+            notifyItemRemoved(position);
+        }
     }
 }
