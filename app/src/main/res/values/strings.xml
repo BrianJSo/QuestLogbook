@@ -18,4 +18,9 @@
     <string name="qmf_week_fri">Friday</string>
     <string name="qmf_week_sat">Saturday</string>
     <string name="qmf_week_sun">Sunday</string>
+    <string name="quest_title">Quest Title</string>
+    <string name="quest_desc">Description</string>
+    <string name="quest_act">Activation</string>
+    <string name="quest_notes">Notes</string>
+    <string name="quest_update_notes">Update Notes</string>
 </resources>
