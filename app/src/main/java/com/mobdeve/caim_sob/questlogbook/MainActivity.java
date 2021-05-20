@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    QuestInstanceDBHelper questInstanceDb;
+    private QuestInstanceDBHelper questInstanceDb;
 
     private ArrayList questList;
     private Button toQuestMakerBtn;

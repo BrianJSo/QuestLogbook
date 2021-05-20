@@ -64,17 +64,17 @@ public class QuestInstanceDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean deleteQuestTemplateData( int id){
+    public Boolean deleteQuestInstanceData( int id){
         SQLiteDatabase db = this.getWritableDatabase();
 
         String strId = String.valueOf(id);
         Cursor cursor = db.rawQuery("Select * from QuestInstances where id=?", new String[] {strId});
         if (cursor.getCount()>0){
             long result = db.delete("QuestInstances", "id=?", new String[] {strId});
-            if (result==1){
-                return false;
-            } else {
+            if (result>0){
                 return true;
+            } else {
+                return false;
             }
         } else {
             return false;
