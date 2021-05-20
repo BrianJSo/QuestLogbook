@@ -27,7 +27,8 @@
         android:hint="@string/qmf_title"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/formPostBtn"
@@ -100,7 +101,8 @@
         android:hint="@string/qmf_desc"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/formDateET" />
+        app:layout_constraintTop_toBottomOf="@+id/formDateET"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/formTimeET"
@@ -114,7 +116,8 @@
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/formQuestType"
-        tools:visibility="invisible" />
+        tools:visibility="invisible"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/formDateET"
@@ -128,7 +131,8 @@
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/formTimeET"
-        tools:visibility="invisible" />
+        tools:visibility="invisible"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/forNotesET"
@@ -140,7 +144,8 @@
         android:hint="@string/qmf_note"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/formDescET" />
+        app:layout_constraintTop_toBottomOf="@+id/formDescET"
+        android:importantForAutofill="no" />
 
     <ScrollView
         android:id="@+id/formWeeklyDates"
