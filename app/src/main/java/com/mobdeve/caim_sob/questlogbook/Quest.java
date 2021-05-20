@@ -17,8 +17,8 @@ public class Quest {
     private LocalDateTime repeatTime;
 
     // quick create constructor
-    public Quest(String title){
-        this.id = 0;
+    public Quest(int id, String title){
+        this.id = id;
         this.title = title;
         this.desc = "TODO";
         this.notes = "";

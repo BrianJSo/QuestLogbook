@@ -94,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
         Quest sample;
         Cursor results = this.questInstanceDb.getData();
         while (results.moveToNext()){
-            sample = new Quest(results.getString(0));
+            int id = Integer.parseInt(results.getString(0));
+            String title = results.getString(1);
+            sample = new Quest(id, title);
             questList.add(sample);
         }
     }
@@ -103,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
         Quest sample;
         Cursor results = this.questInstanceDb.getData();
         while (results.moveToNext()){
-            sample = new Quest(results.getString(0));
+            int id = Integer.parseInt(results.getString(0));
+            String title = results.getString(1);
+            sample = new Quest(id, title);
             questList.add(sample);
         }
     }
