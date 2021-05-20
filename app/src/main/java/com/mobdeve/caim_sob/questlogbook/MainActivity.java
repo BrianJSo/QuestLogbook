@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    QuestInstanceDBHelper questInstanceDb;
 
     private ArrayList questList;
     private Button toQuestMakerBtn;
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        questInstanceDb = new QuestInstanceDBHelper(this);
 
         this.questList = new ArrayList<Quest>();
         populateList(questList);
@@ -68,9 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
                 alert.setPositiveButton("Post", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        //What ever you want to do with the value
-                        //OR
-                        String YouEditTextValue = edittext.getText().toString();
+                        String questTitle = edittext.getText().toString();
+                        Boolean success = MainActivity.this.questInstanceDb.insertQuestInstanceData(questTitle, "TODO", "");
+                        Log.d("BUBOI", String.valueOf(success));
+                        if (success){
+                            reloadList();
+                            MainActivity.this.questAdapter.notifyDataSetChanged();
+                        }
                     }
                 });
 
@@ -79,10 +89,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static void populateList(ArrayList<Quest> questList){
+    public void reloadList(){
+        this.questList.clear();
         Quest sample;
-        for (int i=0; i<20; i++){
-            sample = new Quest("buboi");
+        Cursor results = this.questInstanceDb.getData();
+        while (results.moveToNext()){
+            sample = new Quest(results.getString(0));
+            questList.add(sample);
+        }
+    }
+
+    public void populateList(ArrayList<Quest> questList){
+        Quest sample;
+        Cursor results = this.questInstanceDb.getData();
+        while (results.moveToNext()){
+            sample = new Quest(results.getString(0));
             questList.add(sample);
         }
     }

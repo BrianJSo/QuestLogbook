@@ -1,5 +1,6 @@
 package com.mobdeve.caim_sob.questlogbook;
 
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
