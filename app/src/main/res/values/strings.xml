@@ -11,4 +11,11 @@
     <string name="qmf_time_hint">Enter Time</string>
     <string name="qmf_date_hint">Enter Date</string>
     <string name="qmf_note">Notes</string>
+    <string name="qmf_week_mon">Monday</string>
+    <string name="qmf_week_tue">Tuesday</string>
+    <string name="qmf_week_wed">Wednesday</string>
+    <string name="qmf_week_thu">Thursday</string>
+    <string name="qmf_week_fri">Friday</string>
+    <string name="qmf_week_sat">Saturday</string>
+    <string name="qmf_week_sun">Sunday</string>
 </resources>

@@ -51,8 +51,8 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/formQuestType"
-        android:layout_width="197dp"
-        android:layout_height="99dp"
+        android:layout_width="202dp"
+        android:layout_height="105dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:visibility="gone"
@@ -95,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="@string/qmf_desc"
         android:inputType="textPersonName"
@@ -104,10 +104,10 @@
 
     <EditText
         android:id="@+id/formTimeET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="202dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/qmf_time_hint"
         android:inputType="time"
@@ -118,9 +118,9 @@
 
     <EditText
         android:id="@+id/formDateET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
+        android:layout_width="203dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="168dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/qmf_date_hint"
@@ -141,5 +141,78 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/formDescET" />
+
+    <ScrollView
+        android:id="@+id/formWeeklyDates"
+        android:layout_width="122dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formRepeatBtn"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qmf_week_mon" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qmf_week_tue" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qmf_week_wed" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qmf_week_thu" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qmf_week_fri" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qmf_week_sat" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/qmf_week_sun" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

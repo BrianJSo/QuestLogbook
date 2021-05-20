@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Switch;
 
 import com.google.android.material.chip.Chip;
@@ -22,6 +23,7 @@ public class QuestMakerForm extends AppCompatActivity {
     private EditText hour;
     private EditText date;
     private Button post;
+    private ScrollView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class QuestMakerForm extends AppCompatActivity {
         this.hour = findViewById(R.id.formTimeET);
         this.date = findViewById(R.id.formDateET);
         this.post = findViewById(R.id.formPostBtn);
+        this.sv = findViewById(R.id.formWeeklyDates);
 
         rpt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -48,6 +51,7 @@ public class QuestMakerForm extends AppCompatActivity {
                     questType.setVisibility(View.GONE);
                     hour.setVisibility(View.GONE);
                     date.setVisibility(View.GONE);
+                    sv.setVisibility(View.GONE);
                     daily.setChecked(false);
                     weekly.setChecked(false);
                     sched.setChecked(false);
@@ -59,6 +63,7 @@ public class QuestMakerForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 date.setVisibility(View.GONE);
+                sv.setVisibility(View.GONE);
             }
         });
 
@@ -66,6 +71,7 @@ public class QuestMakerForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 date.setVisibility(View.GONE);
+                sv.setVisibility(View.VISIBLE);
             }
         });
 
@@ -73,6 +79,7 @@ public class QuestMakerForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 date.setVisibility(View.VISIBLE);
+                sv.setVisibility(View.GONE);
             }
         });
 
