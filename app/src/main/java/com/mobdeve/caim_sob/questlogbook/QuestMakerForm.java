@@ -2,18 +2,21 @@ package com.mobdeve.caim_sob.questlogbook;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Switch;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
-public class QuestMakerForm extends AppCompatActivity {
+public class QuestMakerForm extends AppCompatActivity{
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch rpt;
     private ChipGroup questType;
     private Chip daily;
@@ -22,6 +25,7 @@ public class QuestMakerForm extends AppCompatActivity {
     private EditText hour;
     private EditText date;
     private Button post;
+    private ScrollView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,51 +40,39 @@ public class QuestMakerForm extends AppCompatActivity {
         this.hour = findViewById(R.id.formTimeET);
         this.date = findViewById(R.id.formDateET);
         this.post = findViewById(R.id.formPostBtn);
+        this.sv = findViewById(R.id.formWeeklyDates);
 
-        rpt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    questType.setVisibility(View.VISIBLE);
-                    hour.setVisibility(View.VISIBLE);
-                }
-                else{
-                    questType.setVisibility(View.GONE);
-                    hour.setVisibility(View.GONE);
-                    date.setVisibility(View.GONE);
-                    daily.setChecked(false);
-                    weekly.setChecked(false);
-                    sched.setChecked(false);
-                }
+        rpt.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked) {
+                questType.setVisibility(View.VISIBLE);
+                hour.setVisibility(View.VISIBLE);
             }
-        });
-
-        daily.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            else{
+                questType.setVisibility(View.GONE);
+                hour.setVisibility(View.GONE);
                 date.setVisibility(View.GONE);
+                sv.setVisibility(View.GONE);
+                daily.setChecked(false);
+                weekly.setChecked(false);
+                sched.setChecked(false);
             }
         });
 
-        weekly.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                date.setVisibility(View.GONE);
-            }
+        daily.setOnClickListener(v -> {
+            date.setVisibility(View.GONE);
+            sv.setVisibility(View.GONE);
         });
 
-        sched.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                date.setVisibility(View.VISIBLE);
-            }
+        weekly.setOnClickListener(v -> {
+            date.setVisibility(View.GONE);
+            sv.setVisibility(View.VISIBLE);
         });
 
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        sched.setOnClickListener(v -> {
+            date.setVisibility(View.VISIBLE);
+            sv.setVisibility(View.GONE);
         });
+
+        post.setOnClickListener(v -> finish());
     }
 }
