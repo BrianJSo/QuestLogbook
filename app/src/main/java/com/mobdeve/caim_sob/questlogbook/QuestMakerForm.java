@@ -22,16 +22,24 @@ public class QuestMakerForm extends AppCompatActivity{
     private Chip daily;
     private Chip weekly;
     private Chip sched;
+    private EditText formTitleET;
+    private EditText formDescET;
+    private EditText formNotesET;
     private EditText hour;
     private EditText date;
     private Button post;
     private ScrollView sv;
+    boolean isRepeatable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_maker_form);
 
+        this.formTitleET = findViewById(R.id.formTitleET);
+        this.formDescET = findViewById(R.id.formDescET);
+        this.formNotesET = findViewById(R.id.formNotesET);
+        this.formTitleET = findViewById(R.id.formTitleET);
         this.rpt = findViewById(R.id.formRepeatBtn);
         this.questType = findViewById(R.id.formQuestType);
         this.daily = findViewById(R.id.formDailyBtn);
@@ -44,10 +52,12 @@ public class QuestMakerForm extends AppCompatActivity{
 
         rpt.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked) {
+                isRepeatable = true;
                 questType.setVisibility(View.VISIBLE);
                 hour.setVisibility(View.VISIBLE);
             }
             else{
+                isRepeatable = false;
                 questType.setVisibility(View.GONE);
                 hour.setVisibility(View.GONE);
                 date.setVisibility(View.GONE);
@@ -73,6 +83,26 @@ public class QuestMakerForm extends AppCompatActivity{
             sv.setVisibility(View.GONE);
         });
 
-        post.setOnClickListener(v -> finish());
+        post.setOnClickListener(v -> {
+            String title = formTitleET.getText().toString();
+            String desc = formDescET.getText().toString();
+            String notes = formNotesET.getText().toString();
+
+            if (isRepeatable){
+                if (daily.isCheckedIconVisible()){
+//                if daily
+
+                } else if (weekly.isCheckedIconVisible()){
+//                if weekly
+
+                } else if (sched.isCheckedIconVisible()){
+//                if schedule
+
+                }
+            } else {
+
+            }
+            finish();
+        });
     }
 }
