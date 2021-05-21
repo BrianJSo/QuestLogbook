@@ -90,13 +90,13 @@ public class QuestMakerForm extends AppCompatActivity{
 
             if (isRepeatable){
                 if (daily.isCheckedIconVisible()){
-//                if daily
+//                if daily get time
 
                 } else if (weekly.isCheckedIconVisible()){
-//                if weekly
+//                if weekly get day and time
 
                 } else if (sched.isCheckedIconVisible()){
-//                if schedule
+//                if schedule get date and time
 
                 }
             } else {
