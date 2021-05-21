@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
 
-    private QuestInstanceDBHelper questInstanceDb;
+    private QuestDBHelper questDBHelper;
     private Context context;
     private ArrayList<Quest> data;
     public QuestAdapter(ArrayList data){
@@ -24,7 +24,7 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
     @Override
     public QuestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.context = parent.getContext();
-        questInstanceDb = new QuestInstanceDBHelper(this.context);
+        questDBHelper = new QuestDBHelper(this.context);
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.quest, parent, false);
         QuestViewHolder questViewHolder = new QuestViewHolder(view);
@@ -46,7 +46,7 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
 
     public void deleteQuestInstance(int position) {
         int id = data.get(position).getId();
-        Boolean success = this.questInstanceDb.deleteQuestInstanceData(id);
+        Boolean success = this.questDBHelper.deleteQuestInstanceData(id);
         if (success){
             this.data.remove(position);
             notifyItemRemoved(position);

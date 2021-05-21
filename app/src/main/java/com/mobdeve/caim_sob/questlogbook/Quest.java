@@ -4,7 +4,17 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 enum QuestType{
-    DAILY, WEEKLY, SCHEDULE, QUICK;
+    DAILY, WEEKLY, SCHEDULE, QUICK
+}
+
+enum DayOfWeek{
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
 }
 
 public class Quest {

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private QuestInstanceDBHelper questInstanceDb;
+    private QuestDBHelper questDB;
 
     private ArrayList questList;
     private Button toQuestTemplateBtn;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        questInstanceDb = new QuestInstanceDBHelper(this);
+        questDB = new QuestDBHelper(this);
 
         this.questList = new ArrayList<Quest>();
         populateList(questList);
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 alert.setPositiveButton("Post", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String questTitle = edittext.getText().toString();
-                        Boolean success = MainActivity.this.questInstanceDb.insertQuestInstanceData(questTitle, "TODO", "");
+                        Boolean success = MainActivity.this.questDB.insertQuestInstanceData(questTitle, "TODO", "");
                         Log.d("BUBOI", String.valueOf(success));
                         if (success){
                             reloadList();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     public void reloadList(){
         this.questList.clear();
         Quest sample;
-        Cursor results = this.questInstanceDb.getData();
+        Cursor results = this.questDB.getQuestInstances();
         while (results.moveToNext()){
             int id = Integer.parseInt(results.getString(0));
             String title = results.getString(1);
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void populateList(ArrayList<Quest> questList){
         Quest sample;
-        Cursor results = this.questInstanceDb.getData();
+        Cursor results = this.questDB.getQuestInstances();
         while (results.moveToNext()){
             int id = Integer.parseInt(results.getString(0));
             String title = results.getString(1);

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class QuestTemplates extends AppCompatActivity {
 
-    private QuestInstanceDBHelper questInstanceDb;
+    private QuestDBHelper questDBHelper;
 
     private ArrayList templateList;
     private Button toQuestMakerBtn;
@@ -30,7 +30,7 @@ public class QuestTemplates extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_templates);
 
-        questInstanceDb = new QuestInstanceDBHelper(this);
+        questDBHelper = new QuestDBHelper(this);
 
         this.templateList = new ArrayList<Quest>();
         populateList(templateList);
@@ -58,7 +58,7 @@ public class QuestTemplates extends AppCompatActivity {
     public void reloadList(){
         this.templateList.clear();
         Quest sample;
-        Cursor results = this.questInstanceDb.getData();
+        Cursor results = this.questDBHelper.getQuestTemplates();
         while (results.moveToNext()){
             int id = Integer.parseInt(results.getString(0));
             String title = results.getString(1);
@@ -69,7 +69,7 @@ public class QuestTemplates extends AppCompatActivity {
 
     public void populateList(ArrayList<Quest> questList){
         Quest sample;
-        Cursor results = this.questInstanceDb.getData();
+        Cursor results = this.questDBHelper.getQuestTemplates();
         while (results.moveToNext()){
             int id = Integer.parseInt(results.getString(0));
             String title = results.getString(1);
