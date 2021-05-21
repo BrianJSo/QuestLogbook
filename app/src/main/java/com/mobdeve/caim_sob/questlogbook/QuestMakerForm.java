@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -29,7 +30,6 @@ public class QuestMakerForm extends AppCompatActivity{
     private Chip daily;
     private Chip weekly;
     private Chip sched;
-    private TimePicker timePicker;
     private LinearLayout timeGroupLl;
     private LinearLayout dateGroupLl;
     private TextView timeTv;
@@ -41,6 +41,7 @@ public class QuestMakerForm extends AppCompatActivity{
     private EditText formNotesET;
     private Button post;
     private ScrollView sv;
+    private ChipGroup dayOfWeekSelector;
     boolean isRepeatable = false;
 
     private Calendar calendar;
@@ -50,10 +51,13 @@ public class QuestMakerForm extends AppCompatActivity{
     private int hour;
     private int minute;
 
+    private QuestDBHelper questDBHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_maker_form);
+        questDBHelper = new QuestDBHelper(this);
 
         calendar = Calendar.getInstance();
 
@@ -74,6 +78,7 @@ public class QuestMakerForm extends AppCompatActivity{
         this.sched = findViewById(R.id.formScheduleBtn);
         this.post = findViewById(R.id.formPostBtn);
         this.sv = findViewById(R.id.formWeeklyDates);
+        this.dayOfWeekSelector = findViewById(R.id.dayOfWeekSelector);
 
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         month = calendar.get(Calendar.MONTH);
@@ -143,20 +148,26 @@ public class QuestMakerForm extends AppCompatActivity{
             String notes = formNotesET.getText().toString();
 
             if (isRepeatable){
-                if (daily.isCheckedIconVisible()){
+                Log.d("buboi", "inside isRepeatable");
+                Chip questTypeChip = findViewById(questType.getCheckedChipId());
+                if (questTypeChip == daily){
 //                if daily get time
-//                    int hour = timePicker.getHour();
-//                    int minute = timePicker.getMinute();
-
-                } else if (weekly.isCheckedIconVisible()){
+                    Log.d("buboi", "inside daily");
+                    questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute);
+                } else if (questTypeChip == weekly){
 //                if weekly get day and time
-
-                } else if (sched.isCheckedIconVisible()){
+                    Log.d("buboi", "inside weekly");
+                    Chip chip = findViewById(dayOfWeekSelector.getCheckedChipId());
+                    DayOfWeek dayOfWeek = DayOfWeek.valueOf(chip.getText().toString());
+                    questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute, dayOfWeek);
+                } else if (questTypeChip == sched){
 //                if schedule get date and time
-
+                    Log.d("buboi", "inside schedule");
+                    questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute, dayOfMonth, month, year);
                 }
             } else {
-
+                Log.d("buboi", "inside default");
+                questDBHelper.insertQuestInstanceData(title, desc, notes);
             }
             finish();
         });
