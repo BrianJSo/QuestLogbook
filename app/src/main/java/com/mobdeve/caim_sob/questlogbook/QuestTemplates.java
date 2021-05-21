@@ -77,4 +77,6 @@ public class QuestTemplates extends AppCompatActivity {
             questList.add(sample);
         }
     }
+
+
 }
