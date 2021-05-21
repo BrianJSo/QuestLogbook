@@ -12,6 +12,7 @@ import androidx.core.app.NotificationManagerCompat;
 public class Notifications extends BroadcastReceiver {
 
     private int notificationID = 12;
+    public static String NOTIFICATION_ID = "notification_id";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -20,12 +21,14 @@ public class Notifications extends BroadcastReceiver {
             builder.setSmallIcon(R.drawable.quests);
             builder.setContentTitle("New Quest!");
             builder.setContentText("Quest title");
-            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+            builder.setPriority(NotificationCompat.PRIORITY_HIGH);
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
-            notificationManager.notify(notificationID, builder.build());
+            int x = intent.getIntExtra(NOTIFICATION_ID, 0);
+            notificationManager.notify(x, builder.build());
             notificationID++;
         //}
     }
+
 }

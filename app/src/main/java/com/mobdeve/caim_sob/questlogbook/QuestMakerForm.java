@@ -57,6 +57,7 @@ public class QuestMakerForm extends AppCompatActivity{
     private int year;
     private int hour;
     private int minute;
+    private int notificationID = 12;
 
     private QuestDBHelper questDBHelper;
 
@@ -159,7 +160,9 @@ public class QuestMakerForm extends AppCompatActivity{
                 Log.d("buboi", "inside isRepeatable");
                 Chip questTypeChip = findViewById(questType.getCheckedChipId());
                 Intent i = new Intent(QuestMakerForm.this, Notifications.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, 0, i, 0);
+                i.putExtra(Notifications.NOTIFICATION_ID, notificationID);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, notificationID, i, 0);
+                notificationID++;
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 1, 1000 * 5, pendingIntent);
                 if (questTypeChip == daily){
