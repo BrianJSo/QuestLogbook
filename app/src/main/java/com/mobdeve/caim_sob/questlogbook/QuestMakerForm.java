@@ -3,9 +3,16 @@ package com.mobdeve.caim_sob.questlogbook;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -58,6 +65,7 @@ public class QuestMakerForm extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_maker_form);
         questDBHelper = new QuestDBHelper(this);
+        createNotificationChannel();
 
         calendar = Calendar.getInstance();
 
@@ -150,6 +158,10 @@ public class QuestMakerForm extends AppCompatActivity{
             if (isRepeatable){
                 Log.d("buboi", "inside isRepeatable");
                 Chip questTypeChip = findViewById(questType.getCheckedChipId());
+                Intent i = new Intent(QuestMakerForm.this, Notifications.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, 0, i, 0);
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 1, 1000 * 5, pendingIntent);
                 if (questTypeChip == daily){
 //                if daily get time
                     Log.d("buboi", "inside daily");
@@ -175,5 +187,17 @@ public class QuestMakerForm extends AppCompatActivity{
     private String format2Digit(int num){
         String str = "0"+num;
         return str.substring(str.length()-2);
+    }
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("brianso", "Quest Logbook", importance);
+            channel.setDescription("Quest Logbook App");
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }
     }
 }

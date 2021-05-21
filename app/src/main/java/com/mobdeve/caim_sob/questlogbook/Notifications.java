@@ -10,16 +10,22 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 public class Notifications extends BroadcastReceiver {
+
+    private int notificationID = 12;
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "brianso");
-        builder.setSmallIcon(R.drawable.quests);
-        builder.setContentTitle("New Quest!");
-        builder.setContentText("Quest title");
-        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        //if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "brianso");
+            builder.setSmallIcon(R.drawable.quests);
+            builder.setContentTitle("New Quest!");
+            builder.setContentText("Quest title");
+            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
-        notificationManager.notify(200, builder.build());
+            notificationManager.notify(notificationID, builder.build());
+            notificationID++;
+        //}
     }
 }
