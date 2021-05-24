@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp"
@@ -17,17 +17,19 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/viewQuestTypeTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/quest_type"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/viewQuestDescTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/quest_desc"
         android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/viewQuestActivationTv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/quest_act" />
 
     <EditText
         android:id="@+id/viewQuestNotesTv"
@@ -36,15 +38,13 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/quest_notes"
-        android:inputType="textMultiLine"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/updateNotesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quest_update_notes"
-        android:visibility="gone"
-        tools:visibility="invisible" />
+        android:text="@string/quest_update_notes" />
 
 </LinearLayout>

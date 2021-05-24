@@ -1,9 +1,12 @@
 package com.mobdeve.caim_sob.questlogbook;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,30 +28,73 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
         this.desc = itemView.findViewById(R.id.questInstanceDesc);
         this.type = itemView.findViewById(R.id.questInstanceType);
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        itemView.setOnClickListener(v -> {
 
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(itemView.getContext());
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(itemView.getContext());
 
-                LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
-                View dialogView = inflater.inflate(R.layout.activity_quest, (ViewGroup) itemView, false);
-                dialogBuilder.setView(dialogView);
+            LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
+            View dialogView = inflater.inflate(R.layout.activity_quest, (ViewGroup) itemView, false);
+            dialogBuilder.setView(dialogView);
 
-                TextView questTitleTv = (TextView) dialogView.findViewById(R.id.viewQuestTitleTv);
-                questTitleTv.setText(quest.getTitle());
-                TextView questDescTv = (TextView) dialogView.findViewById(R.id.viewQuestDescTv);
-                questDescTv.setText(quest.getDesc());
-                if(quest.getDesc().equals("")){
-                    questDescTv.setText("TODO");
-                }
-                TextView questActivationTv = (TextView) dialogView.findViewById(R.id.viewQuestActivationTv);
-                questActivationTv.setText(quest.getType().name());
-                EditText editText = (EditText) dialogView.findViewById(R.id.viewQuestNotesTv);
-                editText.setText(quest.getNotes());
-                AlertDialog alertDialog = dialogBuilder.create();
-                alertDialog.show();
+            TextView questTitleTv = dialogView.findViewById(R.id.viewQuestTitleTv);
+            questTitleTv.setText(quest.getTitle());
+            TextView questDescTv = dialogView.findViewById(R.id.viewQuestDescTv);
+            questDescTv.setText(quest.getDesc());
+            if(quest.getDesc().equals("")){
+                questDescTv.setText("TODO");
             }
+            QuestType type = quest.getType();
+            String activation = " - ";
+            int hour = quest.getHour();
+            int minute = quest.getMinute();
+            switch (type){
+                case DAILY:
+                    activation += format2Digit(hour)+":"+format2Digit(minute);
+                    break;
+                case WEEKLY:
+                    activation += quest.getDayOfWeek().name()+" "+format2Digit(hour)+":"+format2Digit(minute);
+                    break;
+                case SCHEDULE:
+                    int dayOfMonth = quest.getDayOfMonth();
+                    int month = quest.getMonth();
+                    int year = quest.getYear();
+                    String date = format2Digit(dayOfMonth)+"/"+format2Digit(month)+"/"+year;
+                    activation += date+" "+format2Digit(hour)+":"+format2Digit(minute);
+                    break;
+                case QUICK:
+                    activation = "";
+            }
+            TextView questTypeTv = dialogView.findViewById(R.id.viewQuestTypeTv);
+            questTypeTv.setText(quest.getType().name()+" QUEST"+activation);
+            EditText notesEt = dialogView.findViewById(R.id.viewQuestNotesTv);
+            notesEt.setText(quest.getNotes());
+
+            AlertDialog alertDialog = dialogBuilder.create();
+            Button updateNotesBtn = dialogView.findViewById(R.id.updateNotesBtn);
+            updateNotesBtn.setOnClickListener(v1 -> {
+                Log.d("buboi", "1");
+                if (!notesEt.getText().toString().equals(quest.getNotes())){
+                    Log.d("buboi", "2");
+                    Log.d("buboi", "id = "+quest.getId());
+                    QuestDBHelper dbHelper = new QuestDBHelper(dialogView.getContext());
+
+                    if(quest.getType().equals(QuestType.QUICK)){
+                        if (dbHelper.updateInstanceNotes(quest.getId(), notesEt.getText().toString())){
+                            Log.d("buboi", "3");
+                            quest.setNotes(notesEt.getText().toString());
+                            alertDialog.dismiss();
+                        }
+                    } else {
+                        if (dbHelper.updateTemplateNotes(quest.getId(), notesEt.getText().toString())){
+                            Log.d("buboi", "3");
+                            quest.setNotes(notesEt.getText().toString());
+                            alertDialog.dismiss();
+                        }
+                    }
+
+                }
+            });
+            alertDialog.show();
         });
     }
 
@@ -61,5 +107,10 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
             this.desc.setText(desc);
         }
         this.type.setText(type.name());
+    }
+
+    private String format2Digit(int num){
+        String str = "0"+num;
+        return str.substring(str.length()-2);
     }
 }
