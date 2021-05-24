@@ -182,4 +182,9 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getQuestTemplateByID(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from QuestTemplates WHERE id="+id, null);
+        return cursor;
+    }
 }

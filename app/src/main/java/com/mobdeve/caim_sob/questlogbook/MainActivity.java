@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("BUBOI", String.valueOf(success));
                         if (success){
                             reloadList();
-                            MainActivity.this.questAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -98,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             sample = new Quest(id, title);
             questList.add(sample);
         }
+        this.questAdapter.notifyDataSetChanged();
     }
 
     public void populateList(ArrayList<Quest> questList){

@@ -23,8 +23,13 @@ public class Quest {
     private String desc;
     private String notes;
     private QuestType type;
-    private LocalTime onceTime;
-    private LocalDateTime repeatTime;
+    private int hour;
+    private int minute;
+    private DayOfWeek dayOfWeek;
+    private int dayOfMonth;
+    private int month;
+    private int year;
+
 
     // quick create constructor
     public Quest(int id, String title){
@@ -33,41 +38,52 @@ public class Quest {
         this.desc = "TODO";
         this.notes = "";
         this.type = QuestType.QUICK;
-        this.onceTime = null;
-        this.repeatTime= null;
     }
 
     // non repeatable quest form constructor
-    public Quest(String title, String desc, String notes){
-        this.id = 0;
+    public Quest(int id, String title, String desc, String notes){
+        this.id = id;
         this.title = title;
         this.desc = desc;
         this.notes = notes;
         this.type = QuestType.QUICK;
-        this.onceTime = null;
-        this.repeatTime= null;
     }
 
-    // daily and weekly constructor
-    public Quest(String title, String desc, String notes, QuestType type, LocalTime onceTime){
-        this.id = 0;
+    // daily constructor
+    public Quest(int id, String title, String desc, String notes, int hour, int minute){
+        this.id = id;
         this.title = title;
         this.desc = desc;
         this.notes = notes;
-        this.type = type;
-        this.onceTime = onceTime;
-        this.repeatTime= null;
+        this.type = QuestType.DAILY;
+        this.hour = hour;
+        this.minute = minute;
+    }
+
+    // weekly constructor
+    public Quest(int id, String title, String desc, String notes, int hour, int minute, DayOfWeek dayOfWeek){
+        this.id = id;
+        this.title = title;
+        this.desc = desc;
+        this.notes = notes;
+        this.type = QuestType.WEEKLY;
+        this.hour = hour;
+        this.minute = minute;
+        this.dayOfWeek = dayOfWeek;
     }
 
     // scheduled quest constructor
-    public Quest(String title, String desc, String notes, QuestType type, LocalDateTime repeatTime){
-        this.id = 0;
+    public Quest(int id, String title, String desc, String notes, int hour, int minute, int dayOfMonth, int month, int year){
+        this.id = id;
         this.title = title;
         this.desc = desc;
         this.notes = notes;
-        this.type = type;
-        this.onceTime = null;
-        this.repeatTime= repeatTime;
+        this.type = QuestType.SCHEDULE;
+        this.hour = hour;
+        this.minute = minute;
+        this.dayOfMonth = dayOfMonth;
+        this.month = month;
+        this.year = year;
     }
 
     public int getId() {
@@ -90,12 +106,28 @@ public class Quest {
         return type;
     }
 
-    public LocalTime getOnceTime() {
-        return onceTime;
+    public int getHour() {
+        return hour;
     }
 
-    public LocalDateTime getRepeatTime() {
-        return repeatTime;
+    public int getMinute() {
+        return minute;
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public int getDayOfMonth() {
+        return dayOfMonth;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     public void setTitle(String title) {
