@@ -44,7 +44,11 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
 
     public void setDetails(String title, String desc, QuestType type){
         this.title.setText(title);
-        this.desc.setText(desc);
+        if(desc.equals("")){
+            this.desc.setText("TODO");
+        } else {
+            this.desc.setText(desc);
+        }
         this.type.setText(type.name());
     }
 }

@@ -30,17 +30,7 @@ public class Quest {
     private int month;
     private int year;
 
-
-    // quick create constructor
-    public Quest(int id, String title){
-        this.id = id;
-        this.title = title;
-        this.desc = "TODO";
-        this.notes = "";
-        this.type = QuestType.QUICK;
-    }
-
-    // non repeatable quest form constructor
+    // non repeatable quest constructor
     public Quest(int id, String title, String desc, String notes){
         this.id = id;
         this.title = title;

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         while (results.moveToNext()){
             int id = Integer.parseInt(results.getString(0));
             String title = results.getString(1);
-            sample = new Quest(id, title);
+            sample = new Quest(id, title, "", "");
             questList.add(sample);
         }
         this.questAdapter.notifyDataSetChanged();
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         while (results.moveToNext()){
             int id = Integer.parseInt(results.getString(0));
             String title = results.getString(1);
-            sample = new Quest(id, title);
+            sample = new Quest(id, title, "", "");
             questList.add(sample);
         }
     }
