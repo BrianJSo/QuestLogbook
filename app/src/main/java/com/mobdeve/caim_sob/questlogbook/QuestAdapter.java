@@ -36,7 +36,7 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
         String title = data.get(position).getTitle();
         String desc = data.get(position).getDesc();
         QuestType type = data.get(position).getType();
-        holder.setDetails(title, desc, type);
+        holder.setDetails(title, desc, type, data.get(position));
     }
 
     @Override

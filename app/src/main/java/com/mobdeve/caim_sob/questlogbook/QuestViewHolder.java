@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class QuestViewHolder extends RecyclerView.ViewHolder {
 
+    private Quest quest;
     private TextView title;
     private TextView desc;
     private TextView type;
@@ -34,15 +35,25 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
                 View dialogView = inflater.inflate(R.layout.activity_quest, (ViewGroup) itemView, false);
                 dialogBuilder.setView(dialogView);
 
+                TextView questTitleTv = (TextView) dialogView.findViewById(R.id.viewQuestTitleTv);
+                questTitleTv.setText(quest.getTitle());
+                TextView questDescTv = (TextView) dialogView.findViewById(R.id.viewQuestDescTv);
+                questDescTv.setText(quest.getDesc());
+                if(quest.getDesc().equals("")){
+                    questDescTv.setText("TODO");
+                }
+                TextView questActivationTv = (TextView) dialogView.findViewById(R.id.viewQuestActivationTv);
+                questActivationTv.setText(quest.getType().name());
                 EditText editText = (EditText) dialogView.findViewById(R.id.viewQuestNotesTv);
-                editText.setText("test label");
+                editText.setText(quest.getNotes());
                 AlertDialog alertDialog = dialogBuilder.create();
                 alertDialog.show();
             }
         });
     }
 
-    public void setDetails(String title, String desc, QuestType type){
+    public void setDetails(String title, String desc, QuestType type, Quest quest){
+        this.quest = quest;
         this.title.setText(title);
         if(desc.equals("")){
             this.desc.setText("TODO");
