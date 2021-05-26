@@ -1,6 +1,10 @@
 package com.mobdeve.caim_sob.questlogbook;
 
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,8 +53,13 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
     public void deleteQuest(int position, Boolean isTemplate) {
         int id = data.get(position).getId();
         Boolean success = false;
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(context, Notifications.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, i, 0);
+
         if(isTemplate){
             success = this.questDBHelper.deleteQuestTemplateData(id);
+            alarmManager.cancel(pendingIntent);
         } else {
             success = this.questDBHelper.deleteQuestInstanceData(id);
         }

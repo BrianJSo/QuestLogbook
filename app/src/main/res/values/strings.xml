@@ -23,7 +23,6 @@
     <string name="quest_desc">Description</string>
     <string name="quest_act">Activation</string>
     <string name="quest_notes">Notes</string>
-    <string name="quest_update_template">Update Template</string>
     <string name="quest_update_notes">Update Notes</string>
     <string name="quest_maker">Quest Maker</string>
     <string name="active_quests">Active Quests</string>
@@ -31,5 +30,8 @@
     <string name="default_date">MM-DD-YYYY</string>
     <string name="default_time">HH:MM</string>
     <string name="default_btn_text">set</string>
+    <string name="main_sort_text">Sort by:</string>
+    <string name="main_sort_abc">ABC</string>
+    <string name="main_sort_time">Time</string>
     <string name="edit">EDIT</string>
 </resources>

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView activeQuestsRv;
     private LinearLayoutManager linearLayoutManager;
     private QuestAdapter questAdapter;
+    private Chip byAlphabetical;
+    private Chip byTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         this.toQuestTemplateBtn = findViewById(R.id.toQuestTemplateBtn);
         this.toQuickCreateBtn = findViewById(R.id.toQuickCreateBtn);
         this.activeQuestsRv = findViewById(R.id.activeQuestsRv);
+        this.byAlphabetical = findViewById(R.id.mainSortAlpha);
+        this.byTime = findViewById(R.id.mainSortTime);
 
         this.linearLayoutManager = new LinearLayoutManager(this);
         this.activeQuestsRv.setLayoutManager(this.linearLayoutManager);
@@ -60,29 +65,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        toQuickCreateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+        toQuickCreateBtn.setOnClickListener(v -> {
+            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
 
-                final EditText edittext = new EditText(MainActivity.this);
-                alert.setMessage("New Quest");
-                alert.setTitle("Enter Quest Title");
+            final EditText edittext = new EditText(MainActivity.this);
+            alert.setMessage("New Quest");
+            alert.setTitle("Enter Quest Title");
 
-                alert.setView(edittext);
+            alert.setView(edittext);
 
-                alert.setPositiveButton("Post", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String questTitle = edittext.getText().toString();
-                        int result = MainActivity.this.questDB.insertQuestInstanceData(questTitle, "TODO", "");
-                        if (result>-1){
-                            reloadList();
-                        }
+            alert.setPositiveButton("Post", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    String questTitle = edittext.getText().toString();
+                    int result = MainActivity.this.questDB.insertQuestInstanceData(questTitle, "TODO", "");
+                    if (result>-1){
+                        reloadList();
                     }
-                });
+                }
+            });
 
-                alert.show();
-            }
+            alert.show();
+        });
+
+        byAlphabetical.setOnClickListener(v -> {
+
+        });
+
+        byTime.setOnClickListener(v -> {
+
         });
     }
 

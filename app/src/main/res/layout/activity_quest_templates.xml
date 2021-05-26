@@ -32,6 +32,41 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:paddingTop="10dp"
+            android:paddingEnd="5dp"
+            android:text="@string/main_sort_text" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tempSortAlpha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_sort_abc" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tempSortTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_sort_time" />
+        </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activeTemplatesRV"
         android:layout_width="match_parent"
