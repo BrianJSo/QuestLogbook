@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private QuestAdapter questAdapter;
     private Chip byAlphabetical;
     private Chip byTime;
+    private Boolean alphabetical = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +89,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         byAlphabetical.setOnClickListener(v -> {
-
+            alphabetical = true;
+            reloadList();
         });
 
         byTime.setOnClickListener(v -> {
-
+            alphabetical = false;
+            reloadList();
         });
     }
 
@@ -105,7 +108,12 @@ public class MainActivity extends AppCompatActivity {
     public void reloadList(){
         this.questList.clear();
         Quest sample;
-        Cursor results = this.questDB.getQuestInstances();
+        Cursor results;
+        if (alphabetical){
+            results = this.questDB.getQuestInstancesAlphabetical();
+        } else {
+            results = this.questDB.getQuestInstances();
+        }
         while (results.moveToNext()){
             int id = Integer.parseInt(results.getString(results.getColumnIndex("id")));
             String title = results.getString(results.getColumnIndex("title"));

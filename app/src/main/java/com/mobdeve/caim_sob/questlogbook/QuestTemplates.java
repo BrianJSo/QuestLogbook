@@ -27,6 +27,7 @@ public class QuestTemplates extends AppCompatActivity {
     private QuestAdapter questAdapter;
     private Chip byAlphabetical;
     private Chip byTime;
+    private Boolean alphabetical = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +58,13 @@ public class QuestTemplates extends AppCompatActivity {
         });
 
         byAlphabetical.setOnClickListener(v -> {
-
+            alphabetical = true;
+            reloadList();
         });
 
         byTime.setOnClickListener(v -> {
-
+            alphabetical = false;
+            reloadList();
         });
     }
 
@@ -74,7 +77,13 @@ public class QuestTemplates extends AppCompatActivity {
     public void reloadList(){
         this.templateList.clear();
         Quest sample;
-        Cursor results = this.questDBHelper.getQuestTemplates();
+        Cursor results;
+        if (alphabetical){
+            results = this.questDBHelper.getQuestTemplatesAlphabetical();
+        } else {
+            results = this.questDBHelper.getQuestTemplates();
+        }
+
         while (results.moveToNext()){
             int id = Integer.parseInt(results.getString(results.getColumnIndex("id")));
             String title = results.getString(results.getColumnIndex("title"));

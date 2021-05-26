@@ -239,9 +239,21 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getQuestInstancesAlphabetical(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from QuestInstances ORDER BY title", null);
+        return cursor;
+    }
+
     public Cursor getQuestTemplates(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from QuestTemplates", null);
+        return cursor;
+    }
+
+    public Cursor getQuestTemplatesAlphabetical(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from QuestTemplates ORDER BY title", null);
         return cursor;
     }
 
