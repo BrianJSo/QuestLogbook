@@ -72,10 +72,8 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
             AlertDialog alertDialog = dialogBuilder.create();
             Button updateNotesBtn = dialogView.findViewById(R.id.updateNotesBtn);
             updateNotesBtn.setOnClickListener(v1 -> {
-                Log.d("buboi", "1");
+                // if notes not changed will not trigger button
                 if (!notesEt.getText().toString().equals(quest.getNotes())){
-                    Log.d("buboi", "2");
-                    Log.d("buboi", "id = "+quest.getId());
                     QuestDBHelper dbHelper = new QuestDBHelper(dialogView.getContext());
 
                     if(quest.getType().equals(QuestType.QUICK)){

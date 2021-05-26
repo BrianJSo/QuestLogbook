@@ -107,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
             int hour = results.getInt(results.getColumnIndex("hour"));
             int minute = results.getInt(results.getColumnIndex("minute"));
             switch (type){
+                case DAILY:
+                    sample = new Quest(id, title, desc, notes, hour, minute); break;
                 case WEEKLY:
                     String strDay = results.getString(results.getColumnIndex("dayOfWeek"));
                     DayOfWeek dayOfWeek = DayOfWeek.valueOf(strDay);
@@ -118,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
                     int year = results.getInt(results.getColumnIndex("year"));
                     sample = new Quest(id, title, desc, notes, hour, minute, dayOfMonth, month, year);
                     break;
-                default: // DAILY
-                    sample = new Quest(id, title, desc, notes, hour, minute); break;
+                default: // QUICK
+                    sample = new Quest(id, title, desc, notes);
             }
             this.questList.add(sample);
         }
@@ -139,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
             int hour = results.getInt(results.getColumnIndex("hour"));
             int minute = results.getInt(results.getColumnIndex("minute"));
             switch (type){
+                case DAILY:
+                    sample = new Quest(id, title, desc, notes, hour, minute); break;
                 case WEEKLY:
                     String strDay = results.getString(results.getColumnIndex("dayOfWeek"));
                     DayOfWeek dayOfWeek = DayOfWeek.valueOf(strDay);
@@ -150,8 +154,8 @@ public class MainActivity extends AppCompatActivity {
                     int year = results.getInt(results.getColumnIndex("year"));
                     sample = new Quest(id, title, desc, notes, hour, minute, dayOfMonth, month, year);
                     break;
-                default: // DAILY
-                    sample = new Quest(id, title, desc, notes, hour, minute); break;
+                default: // QUICK
+                    sample = new Quest(id, title, desc, notes);
             }
             questList.add(sample);
         }
