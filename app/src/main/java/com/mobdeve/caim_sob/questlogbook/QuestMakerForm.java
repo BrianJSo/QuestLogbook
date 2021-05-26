@@ -24,6 +24,7 @@ import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -186,6 +187,8 @@ public class QuestMakerForm extends AppCompatActivity{
 //                            SystemClock.elapsedRealtime() + 1000,
 //                            1000 * 20, pendingIntent);
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmManager.INTERVAL_DAY, pendingIntent);
+                    Toast toast = Toast.makeText(QuestMakerForm.this, "Daily Quest successfully posted", Toast.LENGTH_SHORT);
+                    toast.show();
 
                 } else if (questTypeChip == weekly){
 //                if weekly get day and time
@@ -200,6 +203,8 @@ public class QuestMakerForm extends AppCompatActivity{
                     }
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, id, i, 0);
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmManager.INTERVAL_DAY*7, pendingIntent);
+                    Toast toast = Toast.makeText(QuestMakerForm.this, "Weekly Quest successfully posted", Toast.LENGTH_SHORT);
+                    toast.show();
 
                 } else if (questTypeChip == sched){
 //                if schedule get date and time
@@ -216,6 +221,8 @@ public class QuestMakerForm extends AppCompatActivity{
                     }
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, id, i, 0);
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                    Toast toast = Toast.makeText(QuestMakerForm.this, "Scheduled Quest successfully posted", Toast.LENGTH_SHORT);
+                    toast.show();
 
                 }
             } else {
