@@ -69,10 +69,10 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
             TextView questTypeTv = dialogView.findViewById(R.id.viewQuestTypeTv);
             questTypeTv.setText(quest.getType().name()+" QUEST"+activation);
             EditText notesEt = dialogView.findViewById(R.id.viewQuestNotesTv);
-            int position = notesEt.length();
             notesEt.setText(quest.getNotes());
-//            Editable etext = notesEt.getText();
-//            Selection.setSelection(etext, position);
+            int position = notesEt.length();
+            Editable etext = notesEt.getText();
+            Selection.setSelection(etext, position);
 
             AlertDialog alertDialog = dialogBuilder.create();
             Button updateNotesBtn = dialogView.findViewById(R.id.updateNotesBtn);
