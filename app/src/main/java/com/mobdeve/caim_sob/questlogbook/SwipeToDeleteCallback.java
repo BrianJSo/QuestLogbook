@@ -6,10 +6,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
     private QuestAdapter questAdapter;
+    private Boolean isTemplate = false;
+
+    public SwipeToDeleteCallback(QuestAdapter adapter, Boolean isTemplate) {
+        super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+        this.questAdapter = adapter;
+        this.isTemplate = isTemplate;
+    }
 
     public SwipeToDeleteCallback(QuestAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.questAdapter = adapter;
+        this.isTemplate = isTemplate;
     }
 
     @Override
@@ -20,6 +28,6 @@ public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
-        this.questAdapter.deleteQuestInstance(position);
+        this.questAdapter.deleteQuest(position, isTemplate);
     }
 }

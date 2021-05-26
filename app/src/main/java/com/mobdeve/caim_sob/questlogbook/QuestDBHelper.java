@@ -196,6 +196,23 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Boolean deleteQuestTemplateData( int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String strId = String.valueOf(id);
+        Cursor cursor = db.rawQuery("Select * from QuestTemplates where id=?", new String[] {strId});
+        if (cursor.getCount()>0){
+            long result = db.delete("QuestTemplates", "id=?", new String[] {strId});
+            if (result>0){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public Cursor getQuestInstances(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from QuestInstances", null);
