@@ -50,6 +50,10 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
         return data.size();
     }
 
+    public ArrayList<Quest> getData() {
+        return data;
+    }
+
     public void deleteQuest(int position, Boolean isTemplate) {
         int id = data.get(position).getId();
         Boolean success = false;
