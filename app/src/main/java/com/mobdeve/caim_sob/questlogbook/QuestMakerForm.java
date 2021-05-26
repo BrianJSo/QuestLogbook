@@ -12,6 +12,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
@@ -161,6 +162,7 @@ public class QuestMakerForm extends AppCompatActivity{
                 Chip questTypeChip = findViewById(questType.getCheckedChipId());
                 Intent i = new Intent(QuestMakerForm.this, Notifications.class);
                 i.putExtra(Notifications.NOTIFICATION_ID, notificationID);
+                i.putExtra(Notifications.QUEST_TITLE, title);
 //                PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, notificationID, i, 0);
                 notificationID++;
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -173,8 +175,11 @@ public class QuestMakerForm extends AppCompatActivity{
 //                if daily get time
                     Log.d("buboi", "inside daily");
                     int id = questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute);
-                    if(id > -1)
+                    if(id > -1){
                         i.putExtra(Notifications.QUEST_ID, id);
+                        i.putExtra(Notifications.QUEST_TYPE, "Daily Quest");
+                    }
+
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, id, i, 0);
                     //testing if an alarm and instance is created every 20 seconds
 //                    alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
@@ -189,8 +194,10 @@ public class QuestMakerForm extends AppCompatActivity{
                     DayOfWeek dayOfWeek = DayOfWeek.valueOf(chip.getText().toString());
                     int id = questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute, dayOfWeek);
                     calendar.set(Calendar.DAY_OF_WEEK, dayToInt(dayOfWeek));
-                    if(id > -1)
+                    if(id > -1){
                         i.putExtra(Notifications.QUEST_ID, id);
+                        i.putExtra(Notifications.QUEST_TYPE, "Weekly Quest");
+                    }
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, id, i, 0);
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmManager.INTERVAL_DAY*7, pendingIntent);
 
@@ -203,6 +210,7 @@ public class QuestMakerForm extends AppCompatActivity{
                     calendar.set(Calendar.YEAR, year);
                     if(id > -1){
                         i.putExtra(Notifications.QUEST_ID, id);
+                        i.putExtra(Notifications.QUEST_TYPE, "Scheduled Quest");
                         Log.d("buboi", "time ni calendar" + calendar.getTimeInMillis());
                         //questDBHelper.templateToInstance(id);
                     }
