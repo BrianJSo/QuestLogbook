@@ -175,7 +175,7 @@ public class QuestMakerForm extends AppCompatActivity{
                     int id = questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute);
                     if(id > -1)
                         i.putExtra(Notifications.QUEST_ID, id);
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, notificationID, i, 0);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, id, i, 0);
                     //testing if an alarm and instance is created every 20 seconds
 //                    alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
 //                            SystemClock.elapsedRealtime() + 1000,
@@ -191,7 +191,7 @@ public class QuestMakerForm extends AppCompatActivity{
                     calendar.set(Calendar.DAY_OF_WEEK, dayToInt(dayOfWeek));
                     if(id > -1)
                         i.putExtra(Notifications.QUEST_ID, id);
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, notificationID, i, 0);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, id, i, 0);
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmManager.INTERVAL_DAY*7, pendingIntent);
 
                 } else if (questTypeChip == sched){
@@ -206,7 +206,7 @@ public class QuestMakerForm extends AppCompatActivity{
                         Log.d("buboi", "time ni calendar" + calendar.getTimeInMillis());
                         //questDBHelper.templateToInstance(id);
                     }
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, notificationID, i, 0);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, id, i, 0);
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
                 }
