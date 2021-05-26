@@ -161,24 +161,38 @@ public class QuestMakerForm extends AppCompatActivity{
                 Chip questTypeChip = findViewById(questType.getCheckedChipId());
                 Intent i = new Intent(QuestMakerForm.this, Notifications.class);
                 i.putExtra(Notifications.NOTIFICATION_ID, notificationID);
+                //i.putExtra(Notifications.QUEST_ID, );
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, notificationID, i, 0);
                 notificationID++;
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 1, 1000 * 5, pendingIntent);
+
+                Calendar calendar = Calendar.getInstance();
+                //calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.set(Calendar.HOUR_OF_DAY, hour);
+                calendar.set(Calendar.MINUTE, minute);
+//                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 1, 1000 * 5, pendingIntent);
                 if (questTypeChip == daily){
 //                if daily get time
                     Log.d("buboi", "inside daily");
                     questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmManager.INTERVAL_DAY, pendingIntent);
                 } else if (questTypeChip == weekly){
 //                if weekly get day and time
                     Log.d("buboi", "inside weekly");
                     Chip chip = findViewById(dayOfWeekSelector.getCheckedChipId());
                     DayOfWeek dayOfWeek = DayOfWeek.valueOf(chip.getText().toString());
                     questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute, dayOfWeek);
+                    calendar.set(Calendar.DAY_OF_WEEK, dayToInt(dayOfWeek));
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmManager.INTERVAL_DAY*7, pendingIntent);
                 } else if (questTypeChip == sched){
 //                if schedule get date and time
                     Log.d("buboi", "inside schedule");
                     questDBHelper.insertQuestTemplateData(title, desc, notes, hour, minute, dayOfMonth, month, year);
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    calendar.set(Calendar.MONTH, month);
+                    calendar.set(Calendar.YEAR, year);
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                    Log.d("buboi", "time ni calendar" + calendar.getTimeInMillis());
                 }
             } else {
                 Log.d("buboi", "inside default");
@@ -202,5 +216,27 @@ public class QuestMakerForm extends AppCompatActivity{
             notificationManager.createNotificationChannel(channel);
 
         }
+    }
+
+    private int dayToInt(DayOfWeek d){
+        int i = 0;
+        switch (d){
+            case SUNDAY:
+                i = 1;
+            case MONDAY:
+                i = 2;
+            case TUESDAY:
+                i = 3;
+            case WEDNESDAY:
+                i = 4;
+            case THURSDAY:
+                i = 5;
+            case FRIDAY:
+                i = 6;
+            case SATURDAY:
+                i = 7;
+        }
+
+        return i;
     }
 }

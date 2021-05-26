@@ -13,6 +13,8 @@ public class Notifications extends BroadcastReceiver {
 
     private int notificationID = 12;
     public static String NOTIFICATION_ID = "notification_id";
+    public static String QUEST_ID = "quest_id";
+    private QuestDBHelper questDB;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -28,6 +30,7 @@ public class Notifications extends BroadcastReceiver {
             int x = intent.getIntExtra(NOTIFICATION_ID, 0);
             notificationManager.notify(x, builder.build());
             notificationID++;
+            questDB = new QuestDBHelper(context);
         //}
     }
 

@@ -2,6 +2,8 @@ package com.mobdeve.caim_sob.questlogbook;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.Selection;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +70,9 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
             questTypeTv.setText(quest.getType().name()+" QUEST"+activation);
             EditText notesEt = dialogView.findViewById(R.id.viewQuestNotesTv);
             notesEt.setText(quest.getNotes());
+            int position = notesEt.length();
+            Editable etext = notesEt.getText();
+            Selection.setSelection(etext, position);
 
             AlertDialog alertDialog = dialogBuilder.create();
             Button updateNotesBtn = dialogView.findViewById(R.id.updateNotesBtn);
