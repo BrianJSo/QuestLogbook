@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -28,9 +29,13 @@ public class Notifications extends BroadcastReceiver {
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
             int x = intent.getIntExtra(NOTIFICATION_ID, 0);
+            int id = intent.getIntExtra(QUEST_ID, 0);
             notificationManager.notify(x, builder.build());
             notificationID++;
             questDB = new QuestDBHelper(context);
+            Log.d("buboi", "notif id: " + x);
+            Log.d("buboi", "passed id: " + id);
+            questDB.templateToInstance(id);
         //}
     }
 
