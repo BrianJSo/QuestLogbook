@@ -44,9 +44,14 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
         return data.size();
     }
 
-    public void deleteQuestInstance(int position) {
+    public void deleteQuest(int position, Boolean isTemplate) {
         int id = data.get(position).getId();
-        Boolean success = this.questDBHelper.deleteQuestInstanceData(id);
+        Boolean success = false;
+        if(isTemplate){
+            success = this.questDBHelper.deleteQuestTemplateData(id);
+        } else {
+            success = this.questDBHelper.deleteQuestInstanceData(id);
+        }
         if (success){
             this.data.remove(position);
             notifyItemRemoved(position);

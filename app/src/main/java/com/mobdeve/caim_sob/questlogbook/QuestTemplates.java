@@ -43,15 +43,12 @@ public class QuestTemplates extends AppCompatActivity {
         this.questAdapter = new QuestAdapter(templateList);
         this.templateQuestsRv.setAdapter(this.questAdapter);
         ItemTouchHelper itemTouchHelper = new
-                ItemTouchHelper(new SwipeToDeleteCallback(this.questAdapter));
+                ItemTouchHelper(new SwipeToDeleteCallback(this.questAdapter, true));
         itemTouchHelper.attachToRecyclerView(this.templateQuestsRv);
 
-        this.toQuestMakerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(QuestTemplates.this, QuestMakerForm.class);
-                startActivity(i);
-            }
+        this.toQuestMakerBtn.setOnClickListener(v -> {
+            Intent i = new Intent(QuestTemplates.this, QuestMakerForm.class);
+            startActivity(i);
         });
     }
 
