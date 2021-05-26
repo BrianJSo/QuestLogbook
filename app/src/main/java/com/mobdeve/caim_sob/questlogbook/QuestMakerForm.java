@@ -161,6 +161,7 @@ public class QuestMakerForm extends AppCompatActivity{
                 Chip questTypeChip = findViewById(questType.getCheckedChipId());
                 Intent i = new Intent(QuestMakerForm.this, Notifications.class);
                 i.putExtra(Notifications.NOTIFICATION_ID, notificationID);
+                //i.putExtra(Notifications.QUEST_ID, );
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(QuestMakerForm.this, notificationID, i, 0);
                 notificationID++;
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
