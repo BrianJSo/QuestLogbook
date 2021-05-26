@@ -158,6 +158,26 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Boolean updateTemplateData(int id, String title, String description, String notes){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("title", title);
+        contentValues.put("description", description);
+        contentValues.put("notes", notes);
+        String strId = String.valueOf(id);
+        Cursor cursor = db.rawQuery("Select * from QuestTemplates WHERE id=?", new String[] {strId});
+        if (cursor.getCount()>0){
+            long result = db.update("QuestTemplates", contentValues, "id=?", new String[] {strId});
+            if (result>0){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public Boolean updateQuestInstanceData( int id, String title, String description, String notes ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

@@ -16,8 +16,10 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
     private QuestDBHelper questDBHelper;
     private Context context;
     private ArrayList<Quest> data;
-    public QuestAdapter(ArrayList data){
+    private Boolean isTemplate;
+    public QuestAdapter(ArrayList data, Boolean isTemplate){
         this.data = data;
+        this.isTemplate = isTemplate;
     }
 
     @NonNull
@@ -27,7 +29,7 @@ public class QuestAdapter extends RecyclerView.Adapter<QuestViewHolder> {
         questDBHelper = new QuestDBHelper(this.context);
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.quest, parent, false);
-        QuestViewHolder questViewHolder = new QuestViewHolder(view);
+        QuestViewHolder questViewHolder = new QuestViewHolder(view, isTemplate);
         return questViewHolder;
     }
 

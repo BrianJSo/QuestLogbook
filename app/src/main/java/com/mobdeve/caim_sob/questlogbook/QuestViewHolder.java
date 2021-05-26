@@ -23,7 +23,7 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
     private TextView desc;
     private TextView type;
 
-    public QuestViewHolder(@NonNull View itemView) {
+    public QuestViewHolder(@NonNull View itemView, Boolean isTemplate) {
         super(itemView);
 
         this.title = itemView.findViewById(R.id.questInstanceTitle);
@@ -35,16 +35,38 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(itemView.getContext());
 
             LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
-            View dialogView = inflater.inflate(R.layout.activity_quest, (ViewGroup) itemView, false);
+            int layout;
+            if(isTemplate){
+                layout = R.layout.quest_template_edit;
+            } else {
+                layout = R.layout.activity_quest;
+            }
+
+            View dialogView = inflater.inflate(layout, (ViewGroup) itemView, false);
             dialogBuilder.setView(dialogView);
 
-            TextView questTitleTv = dialogView.findViewById(R.id.viewQuestTitleTv);
-            questTitleTv.setText(quest.getTitle());
-            TextView questDescTv = dialogView.findViewById(R.id.viewQuestDescTv);
-            questDescTv.setText(quest.getDesc());
-            if(quest.getDesc().equals("")){
-                questDescTv.setText("TODO");
+            int titleView;
+            int descView;
+            if (isTemplate){
+                titleView = R.id.editQuestTitleEt;
+                descView = R.id.editQuestDescEt;
+                EditText questTitleEt = dialogView.findViewById(titleView);
+                EditText questDescEt = dialogView.findViewById(descView);
+                questTitleEt.setText(quest.getTitle());
+                questDescEt.setText(quest.getDesc());
+            } else {
+                titleView = R.id.viewQuestTitleTv;
+                descView = R.id.viewQuestDescTv;
+                TextView questTitleTv = dialogView.findViewById(titleView);
+                questTitleTv.setText(quest.getTitle());
+                TextView questDescTv = dialogView.findViewById(descView);
+                questDescTv.setText(quest.getDesc());
+                if(quest.getDesc().equals("")){
+                    questDescTv.setText("TODO");
+                }
             }
+
+            // QUEST TYPE
             QuestType type = quest.getType();
             String activation = " - ";
             int hour = quest.getHour();
@@ -66,33 +88,51 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
                 case QUICK:
                     activation = "";
             }
-            TextView questTypeTv = dialogView.findViewById(R.id.viewQuestTypeTv);
+            int typeView = R.id.viewQuestTypeTv;
+            if (isTemplate){
+                typeView = R.id.editQuestTypeTv;
+            }
+            TextView questTypeTv = dialogView.findViewById(typeView);
             questTypeTv.setText(quest.getType().name()+" QUEST"+activation);
-            EditText notesEt = dialogView.findViewById(R.id.viewQuestNotesTv);
+
+            // QUEST NOTES
+            int notesView = R.id.viewQuestNotesTv;
+            if (isTemplate) {
+                notesView = R.id.editQuestNotesEt;
+            }
+            EditText notesEt = dialogView.findViewById(notesView);
             notesEt.setText(quest.getNotes());
             int position = notesEt.length();
             Editable etext = notesEt.getText();
             Selection.setSelection(etext, position);
 
+            // ALERT AND UPDATE BTN
             AlertDialog alertDialog = dialogBuilder.create();
-            Button updateNotesBtn = dialogView.findViewById(R.id.updateNotesBtn);
-            updateNotesBtn.setOnClickListener(v1 -> {
-                // if notes not changed will not trigger button
-                if (!notesEt.getText().toString().equals(quest.getNotes())){
-                    QuestDBHelper dbHelper = new QuestDBHelper(dialogView.getContext());
-
-                    if(quest.getType().equals(QuestType.QUICK)){
-                        if (dbHelper.updateInstanceNotes(quest.getId(), notesEt.getText().toString())){
-                            quest.setNotes(notesEt.getText().toString());
-                            alertDialog.dismiss();
-                        }
-                    } else {
-                        if (dbHelper.updateTemplateNotes(quest.getId(), notesEt.getText().toString())){
-                            quest.setNotes(notesEt.getText().toString());
-                            alertDialog.dismiss();
-                        }
+            int btnView = R.id.updateNotesBtn;
+            if (isTemplate){
+                btnView = R.id.editQuestBtn;
+            }
+            Button updateBtn = dialogView.findViewById(btnView);
+            updateBtn.setOnClickListener(v1 -> {
+                QuestDBHelper dbHelper = new QuestDBHelper(dialogView.getContext());
+                if(!isTemplate){
+                    if (dbHelper.updateInstanceNotes(quest.getId(), notesEt.getText().toString())){
+                        quest.setNotes(notesEt.getText().toString());
+                        alertDialog.dismiss();
                     }
-
+                } else {
+                    EditText questTitleEt = dialogView.findViewById(titleView);
+                    EditText questDescEt = dialogView.findViewById(descView);
+                    String questTitle = questTitleEt.getText().toString();
+                    String questDesc = questDescEt.getText().toString();
+                    questDescEt.setText(quest.getDesc());
+                    if (dbHelper.updateTemplateData(quest.getId(), questTitle, questDesc, notesEt.getText().toString())){
+                        quest.setTitle(questTitle);
+                        quest.setDesc(questDesc);
+                        quest.setNotes(notesEt.getText().toString());
+                        setDetails(quest);
+                        alertDialog.dismiss();
+                    }
                 }
             });
             alertDialog.show();
@@ -108,6 +148,17 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
             this.desc.setText(desc);
         }
         this.type.setText(type.name());
+    }
+
+    public void setDetails(Quest quest){
+        this.quest = quest;
+        this.title.setText(quest.getTitle());
+        if(desc.equals("")){
+            this.desc.setText("TODO");
+        } else {
+            this.desc.setText(quest.getDesc());
+        }
+        this.type.setText(quest.getType().name());
     }
 
     private String format2Digit(int num){

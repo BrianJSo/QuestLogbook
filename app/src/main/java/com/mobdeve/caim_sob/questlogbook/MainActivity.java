@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.linearLayoutManager = new LinearLayoutManager(this);
         this.activeQuestsRv.setLayoutManager(this.linearLayoutManager);
-        this.questAdapter = new QuestAdapter(questList);
+        this.questAdapter = new QuestAdapter(questList, false);
         this.activeQuestsRv.setAdapter(this.questAdapter);
         ItemTouchHelper itemTouchHelper = new
                 ItemTouchHelper(new SwipeToDeleteCallback(this.questAdapter));

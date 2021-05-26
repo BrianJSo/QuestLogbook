@@ -40,7 +40,7 @@ public class QuestTemplates extends AppCompatActivity {
 
         this.linearLayoutManager = new LinearLayoutManager(this);
         this.templateQuestsRv.setLayoutManager(this.linearLayoutManager);
-        this.questAdapter = new QuestAdapter(templateList);
+        this.questAdapter = new QuestAdapter(templateList, true);
         this.templateQuestsRv.setAdapter(this.questAdapter);
         ItemTouchHelper itemTouchHelper = new
                 ItemTouchHelper(new SwipeToDeleteCallback(this.questAdapter, true));
