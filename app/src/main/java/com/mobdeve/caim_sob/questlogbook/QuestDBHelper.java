@@ -4,6 +4,7 @@ package com.mobdeve.caim_sob.questlogbook;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -17,11 +18,17 @@ public class QuestDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create Table QuestInstances(" +
-                "id INTEGER primary key," +
+                "id INTEGER primary key, " +
                 "title TEXT, " +
                 "description TEXT, " +
-                "notes TEXT," +
-                "type TEXT)");
+                "notes TEXT, " +
+                "type TEXT, " +
+                "hour INTEGER, " +
+                "minute INTEGER, " +
+                "dayOfWeek TEXT, " +
+                "dayOfMonth INTEGER, " +
+                "month INTEGER, " +
+                "year INTEGER)");
         db.execSQL("create Table QuestTemplates(" +
                 "id INTEGER primary key, " +
                 "title TEXT, " +
@@ -58,20 +65,24 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         }
     }
 
-//    public Boolean insertQuestTemplateData(String title, String description, String notes ){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put("title", title);
-//        contentValues.put("description", description);
-//        contentValues.put("notes", notes);
-//        contentValues.put("type", "QUICK");
-//        long result = db.insert("QuestTemplates", null, contentValues);
-//        if (result==1){
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
+    public Boolean templateToInstance(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String strId = String.valueOf(id);
+        Cursor cursor = db.rawQuery("Select * from QuestTemplates WHERE id=?", new String[] {strId});
+        ContentValues contentValues = new ContentValues();
+        if(cursor.moveToFirst()) {
+            do {
+                DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
+            } while(cursor.moveToNext());
+        }
+        contentValues.remove("id");
+        long result = db.insert("QuestInstances", null, contentValues);
+        if (result>-1){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public Boolean insertQuestTemplateData(String title, String description, String notes,
                                            int hour, int minute){

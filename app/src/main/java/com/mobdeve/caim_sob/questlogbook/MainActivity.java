@@ -87,15 +87,41 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reloadList();
+    }
+
     public void reloadList(){
         this.questList.clear();
         Quest sample;
         Cursor results = this.questDB.getQuestInstances();
         while (results.moveToNext()){
-            int id = Integer.parseInt(results.getString(0));
-            String title = results.getString(1);
-            sample = new Quest(id, title, "", "");
-            questList.add(sample);
+            int id = Integer.parseInt(results.getString(results.getColumnIndex("id")));
+            String title = results.getString(results.getColumnIndex("title"));
+            String desc = results.getString(results.getColumnIndex("description"));
+            String notes = results.getString(results.getColumnIndex("notes"));
+            String strType = results.getString(results.getColumnIndex("type"));
+            QuestType type = QuestType.valueOf(strType);
+            int hour = results.getInt(results.getColumnIndex("hour"));
+            int minute = results.getInt(results.getColumnIndex("minute"));
+            switch (type){
+                case WEEKLY:
+                    String strDay = results.getString(results.getColumnIndex("dayOfWeek"));
+                    DayOfWeek dayOfWeek = DayOfWeek.valueOf(strDay);
+                    sample = new Quest(id, title, desc, notes, hour, minute, dayOfWeek);
+                    break;
+                case SCHEDULE:
+                    int dayOfMonth = results.getInt(results.getColumnIndex("dayOfMonth"));
+                    int month = results.getInt(results.getColumnIndex("month"));
+                    int year = results.getInt(results.getColumnIndex("year"));
+                    sample = new Quest(id, title, desc, notes, hour, minute, dayOfMonth, month, year);
+                    break;
+                default: // DAILY
+                    sample = new Quest(id, title, desc, notes, hour, minute); break;
+            }
+            this.questList.add(sample);
         }
         this.questAdapter.notifyDataSetChanged();
     }
@@ -104,9 +130,29 @@ public class MainActivity extends AppCompatActivity {
         Quest sample;
         Cursor results = this.questDB.getQuestInstances();
         while (results.moveToNext()){
-            int id = Integer.parseInt(results.getString(0));
-            String title = results.getString(1);
-            sample = new Quest(id, title, "", "");
+            int id = Integer.parseInt(results.getString(results.getColumnIndex("id")));
+            String title = results.getString(results.getColumnIndex("title"));
+            String desc = results.getString(results.getColumnIndex("description"));
+            String notes = results.getString(results.getColumnIndex("notes"));
+            String strType = results.getString(results.getColumnIndex("type"));
+            QuestType type = QuestType.valueOf(strType);
+            int hour = results.getInt(results.getColumnIndex("hour"));
+            int minute = results.getInt(results.getColumnIndex("minute"));
+            switch (type){
+                case WEEKLY:
+                    String strDay = results.getString(results.getColumnIndex("dayOfWeek"));
+                    DayOfWeek dayOfWeek = DayOfWeek.valueOf(strDay);
+                    sample = new Quest(id, title, desc, notes, hour, minute, dayOfWeek);
+                    break;
+                case SCHEDULE:
+                    int dayOfMonth = results.getInt(results.getColumnIndex("dayOfMonth"));
+                    int month = results.getInt(results.getColumnIndex("month"));
+                    int year = results.getInt(results.getColumnIndex("year"));
+                    sample = new Quest(id, title, desc, notes, hour, minute, dayOfMonth, month, year);
+                    break;
+                default: // DAILY
+                    sample = new Quest(id, title, desc, notes, hour, minute); break;
+            }
             questList.add(sample);
         }
     }
