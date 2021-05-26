@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 ItemTouchHelper(new SwipeToDeleteCallback(this.questAdapter));
         itemTouchHelper.attachToRecyclerView(this.activeQuestsRv);
 
+        ItemTouchHelper itemTouchHelper2 = new
+                ItemTouchHelper(new SimpleCallback(this.questAdapter));
+        itemTouchHelper2.attachToRecyclerView(this.activeQuestsRv);
+
         this.toQuestTemplateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
