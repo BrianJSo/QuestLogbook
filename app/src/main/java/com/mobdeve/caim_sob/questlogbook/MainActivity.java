@@ -74,9 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 alert.setPositiveButton("Post", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String questTitle = edittext.getText().toString();
-                        Boolean success = MainActivity.this.questDB.insertQuestInstanceData(questTitle, "TODO", "");
-                        Log.d("BUBOI", String.valueOf(success));
-                        if (success){
+                        int result = MainActivity.this.questDB.insertQuestInstanceData(questTitle, "TODO", "");
+                        if (result>-1){
                             reloadList();
                         }
                     }

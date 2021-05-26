@@ -49,23 +49,19 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         db.execSQL("drop Table if exists QuestTemplates");
     }
 
-    public Boolean insertQuestInstanceData(String title, String description, String notes ){
+    public int insertQuestInstanceData(String title, String description, String notes ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
         contentValues.put("description", description);
         contentValues.put("notes", notes);
         contentValues.put("type", "QUICK");
-        long result = db.insert("QuestInstances", null, contentValues);
+        int result = (int) db.insert("QuestInstances", null, contentValues);
         Log.d("BUBOI", String.valueOf(result));
-        if (result>-1){
-            return true;
-        } else {
-            return false;
-        }
+        return result;
     }
 
-    public Boolean templateToInstance(int id){
+    public int templateToInstance(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         String strId = String.valueOf(id);
         Cursor cursor = db.rawQuery("Select * from QuestTemplates WHERE id=?", new String[] {strId});
@@ -76,15 +72,11 @@ public class QuestDBHelper extends SQLiteOpenHelper {
             } while(cursor.moveToNext());
         }
         contentValues.remove("id");
-        long result = db.insert("QuestInstances", null, contentValues);
-        if (result>-1){
-            return true;
-        } else {
-            return false;
-        }
+        int result = (int) db.insert("QuestInstances", null, contentValues);
+        return result;
     }
 
-    public Boolean insertQuestTemplateData(String title, String description, String notes,
+    public int insertQuestTemplateData(String title, String description, String notes,
                                            int hour, int minute){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -94,15 +86,11 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         contentValues.put("type", "DAILY");
         contentValues.put("hour", hour);
         contentValues.put("minute", minute);
-        long result = db.insert("QuestTemplates", null, contentValues);
-        if (result==1){
-            return false;
-        } else {
-            return true;
-        }
+        int result = (int) db.insert("QuestTemplates", null, contentValues);
+        return result;
     }
 
-    public Boolean insertQuestTemplateData(String title, String description, String notes,
+    public int insertQuestTemplateData(String title, String description, String notes,
                                            int hour, int minute, DayOfWeek dayOfWeek){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -113,15 +101,11 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         contentValues.put("hour", hour);
         contentValues.put("minute", minute);
         contentValues.put("dayOfWeek", dayOfWeek.name());
-        long result = db.insert("QuestTemplates", null, contentValues);
-        if (result==1){
-            return false;
-        } else {
-            return true;
-        }
+        int result = (int) db.insert("QuestTemplates", null, contentValues);
+        return result;
     }
 
-    public Boolean insertQuestTemplateData(String title, String description, String notes,
+    public int insertQuestTemplateData(String title, String description, String notes,
                                            int hour, int minute, int dayOfMonth, int month, int year){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -134,12 +118,8 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         contentValues.put("dayOfMonth", dayOfMonth);
         contentValues.put("month", month);
         contentValues.put("year", year);
-        long result = db.insert("QuestTemplates", null, contentValues);
-        if (result==1){
-            return false;
-        } else {
-            return true;
-        }
+        int result = (int) db.insert("QuestTemplates", null, contentValues);
+        return result;
     }
 
     public Boolean updateInstanceNotes(int id, String notes){
@@ -147,7 +127,7 @@ public class QuestDBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("notes", notes);
         String strId = String.valueOf(id);
-        Cursor cursor = db.rawQuery("Select * from QuestTemplates WHERE id=?", new String[] {strId});
+        Cursor cursor = db.rawQuery("Select * from QuestInstances WHERE id=?", new String[] {strId});
         if (cursor.getCount()>0){
             long result = db.update("QuestInstances", contentValues, "id=?", new String[] {strId});
             if (result>0){
