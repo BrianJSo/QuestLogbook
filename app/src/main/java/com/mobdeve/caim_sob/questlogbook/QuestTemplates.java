@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class QuestTemplates extends AppCompatActivity {
     private RecyclerView templateQuestsRv;
     private LinearLayoutManager linearLayoutManager;
     private QuestAdapter questAdapter;
+    private Chip byAlphabetical;
+    private Chip byTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class QuestTemplates extends AppCompatActivity {
 
         this.toQuestMakerBtn = findViewById(R.id.toQuestMakerBtn);
         this.templateQuestsRv = findViewById(R.id.activeTemplatesRV);
+        this.byAlphabetical = findViewById(R.id.tempSortAlpha);
+        this.byTime = findViewById(R.id.tempSortTime);
 
         this.linearLayoutManager = new LinearLayoutManager(this);
         this.templateQuestsRv.setLayoutManager(this.linearLayoutManager);
@@ -49,6 +54,14 @@ public class QuestTemplates extends AppCompatActivity {
         this.toQuestMakerBtn.setOnClickListener(v -> {
             Intent i = new Intent(QuestTemplates.this, QuestMakerForm.class);
             startActivity(i);
+        });
+
+        byAlphabetical.setOnClickListener(v -> {
+
+        });
+
+        byTime.setOnClickListener(v -> {
+
         });
     }
 
