@@ -83,13 +83,11 @@ public class QuestViewHolder extends RecyclerView.ViewHolder {
 
                     if(quest.getType().equals(QuestType.QUICK)){
                         if (dbHelper.updateInstanceNotes(quest.getId(), notesEt.getText().toString())){
-                            Log.d("buboi", "3");
                             quest.setNotes(notesEt.getText().toString());
                             alertDialog.dismiss();
                         }
                     } else {
                         if (dbHelper.updateTemplateNotes(quest.getId(), notesEt.getText().toString())){
-                            Log.d("buboi", "3");
                             quest.setNotes(notesEt.getText().toString());
                             alertDialog.dismiss();
                         }
