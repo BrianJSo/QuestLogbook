@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 ItemTouchHelper(new SwipeToDeleteCallback(this.questAdapter));
         itemTouchHelper.attachToRecyclerView(this.activeQuestsRv);
 
+        ItemTouchHelper itemTouchHelper2 = new
+                ItemTouchHelper(new SimpleCallback(this.questAdapter));
+        itemTouchHelper2.attachToRecyclerView(this.activeQuestsRv);
+
         this.toQuestTemplateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
                     if (result>-1){
                         reloadList();
                     }
+                    Toast toast = Toast.makeText(MainActivity.this, "Quick Quest successfully posted", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             });
 

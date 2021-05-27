@@ -52,6 +52,10 @@ public class QuestTemplates extends AppCompatActivity {
                 ItemTouchHelper(new SwipeToDeleteCallback(this.questAdapter, true));
         itemTouchHelper.attachToRecyclerView(this.templateQuestsRv);
 
+        ItemTouchHelper itemTouchHelper2 = new
+                ItemTouchHelper(new SimpleCallback(this.questAdapter));
+        itemTouchHelper2.attachToRecyclerView(this.templateQuestsRv);
+
         this.toQuestMakerBtn.setOnClickListener(v -> {
             Intent i = new Intent(QuestTemplates.this, QuestMakerForm.class);
             startActivity(i);
