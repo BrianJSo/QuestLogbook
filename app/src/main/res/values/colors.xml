@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="genshin1">#273039</color>
+    <color name="genshin2">#404C51</color>
+    <color name="genshin3">#D9D5CA</color>
+    <color name="genshin4">#FFE53E</color>
 </resources>

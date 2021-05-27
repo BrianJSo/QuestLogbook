@@ -7,6 +7,19 @@
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/active_quests"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2"
+        app:srcCompat="@drawable/background" />
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -16,6 +29,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/genshin1"
             android:gravity="end"
             android:orientation="horizontal">
 
@@ -25,8 +39,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
                 android:text="@string/active_quests"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <Button
@@ -34,7 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/quest_templates" />
+                android:backgroundTint="@color/genshin3"
+                android:text="@string/quest_templates"
+                android:textColor="@color/genshin1"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,10 +68,12 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:paddingStart="0dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="5dp"
-                android:text="@string/main_sort_text" />
+                android:text="@string/main_sort_text"
+                android:textColor="@color/genshin1"
+                android:textStyle="bold" />
 
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
@@ -61,13 +83,17 @@
                     android:id="@+id/mainSortAlpha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/main_sort_abc" />
+                    android:text="@string/main_sort_abc"
+                    android:textColor="@color/white"
+                    app:chipBackgroundColor="@color/genshin1" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/mainSortTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/main_sort_time" />
+                    android:text="@string/main_sort_time"
+                    android:textColor="@color/white"
+                    app:chipBackgroundColor="@color/genshin1" />
             </com.google.android.material.chip.ChipGroup>
 
         </LinearLayout>
@@ -86,9 +112,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
+        android:focusable="true"
         android:src="@android:drawable/ic_input_add"
+        android:tint="#FF0000"
+        app:backgroundTint="@color/genshin4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:focusable="true" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
