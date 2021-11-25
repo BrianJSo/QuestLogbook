@@ -32,7 +32,8 @@
                   "status": "Open",
                   "severity": "Medium",
                   "title": "Spoofing",
-                  "type": "Spoofing"
+                  "type": "Spoofing",
+                  "description": "Spoofing"
                 }
               ],
               "attrs": {
@@ -60,16 +61,24 @@
               "angle": 0,
               "id": "a4699c5a-d001-4c89-98ab-e8a2bf02ded1",
               "z": 4,
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "title": "Tampering"
+                }
+              ],
               "attrs": {
                 ".element-shape": {
-                  "class": "element-shape hasNoOpenThreats isInScope"
+                  "class": "element-shape hasOpenThreats isInScope"
                 },
                 "text": {
                   "text": "LDAP"
                 },
                 ".element-text": {
-                  "class": "element-text hasNoOpenThreats isInScope"
+                  "class": "element-text hasOpenThreats isInScope"
                 }
               }
             },
@@ -86,16 +95,24 @@
               "angle": 0,
               "id": "dd653184-ee5d-4062-9afd-42fb3af23c4c",
               "z": 5,
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "Spoofing",
+                  "type": "Spoofing"
+                }
+              ],
               "attrs": {
                 ".element-shape": {
-                  "class": "element-shape hasNoOpenThreats isInScope"
+                  "class": "element-shape hasOpenThreats isInScope"
                 },
                 "text": {
                   "text": "Web\nApplication"
                 },
                 ".element-text": {
-                  "class": "element-text hasNoOpenThreats isInScope"
+                  "class": "element-text hasOpenThreats isInScope"
                 }
               }
             },
@@ -112,16 +129,24 @@
               "angle": 0,
               "id": "2c3e140c-2c46-4471-a2ce-47c7bebada83",
               "z": 7,
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "Elevation of Privilege",
+                  "type": "Elevation of privilege"
+                }
+              ],
               "attrs": {
                 ".element-shape": {
-                  "class": "element-shape hasNoOpenThreats isInScope"
+                  "class": "element-shape hasOpenThreats isInScope"
                 },
                 "text": {
                   "text": "Authorization Provider"
                 },
                 ".element-text": {
-                  "class": "element-text hasNoOpenThreats isInScope"
+                  "class": "element-text hasOpenThreats isInScope"
                 }
               }
             },
@@ -201,16 +226,24 @@
               "angle": 0,
               "id": "4ff8c181-9835-4477-a3e8-49ce272ea9a9",
               "z": 10,
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "Spoofing",
+                  "type": "Spoofing"
+                }
+              ],
               "attrs": {
                 ".element-shape": {
-                  "class": "element-shape hasNoOpenThreats isInScope"
+                  "class": "element-shape hasOpenThreats isInScope"
                 },
                 "text": {
                   "text": "SQL Databbase"
                 },
                 ".element-text": {
-                  "class": "element-text hasNoOpenThreats isInScope"
+                  "class": "element-text hasOpenThreats isInScope"
                 }
               }
             },
@@ -233,8 +266,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.5053729481652403,
-                    "offset": -10.167712612839793
+                    "distance": 0.34095682127858434,
+                    "offset": -7.391582961898497
                   },
                   "attrs": {
                     "text": {
@@ -275,8 +308,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.5227612470118715,
-                    "offset": -9.159233134999136
+                    "distance": 0.7642250755354522,
+                    "offset": -7.744421775243761
                   },
                   "attrs": {
                     "text": {
@@ -443,8 +476,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.5094666056188385,
-                    "offset": 2.674653459417609
+                    "distance": 0.3627962409000378,
+                    "offset": -4.227796625874782
                   },
                   "attrs": {
                     "text": {
@@ -485,8 +518,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.4985809823143154,
-                    "offset": 0.9852980348423868
+                    "distance": 0.7011182961910944,
+                    "offset": 6.863512453893106
                   },
                   "attrs": {
                     "text": {
@@ -591,6 +624,48 @@
                   "class": "connection hasNoOpenThreats isInScope"
                 }
               }
+            },
+            {
+              "type": "tm.Boundary",
+              "smooth": true,
+              "source": {
+                "x": 461,
+                "y": 315
+              },
+              "target": {
+                "x": 481,
+                "y": 524
+              },
+              "vertices": [
+                {
+                  "x": 454,
+                  "y": 419
+                }
+              ],
+              "id": "31db224f-968c-4e8f-a5c5-6706fa65333e",
+              "z": 20,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Boundary",
+              "smooth": true,
+              "source": {
+                "x": 913,
+                "y": 43
+              },
+              "target": {
+                "x": 862,
+                "y": 540
+              },
+              "vertices": [
+                {
+                  "x": 833,
+                  "y": 285
+                }
+              ],
+              "id": "695989d0-488f-479e-b246-6cc27647b0be",
+              "z": 21,
+              "attrs": {}
             }
           ]
         },
