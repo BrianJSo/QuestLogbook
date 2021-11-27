@@ -117,40 +117,6 @@
               }
             },
             {
-              "type": "tm.Actor",
-              "size": {
-                "width": 160,
-                "height": 80
-              },
-              "position": {
-                "x": 513,
-                "y": 78
-              },
-              "angle": 0,
-              "id": "2c3e140c-2c46-4471-a2ce-47c7bebada83",
-              "z": 7,
-              "hasOpenThreats": true,
-              "threats": [
-                {
-                  "status": "Open",
-                  "severity": "Medium",
-                  "title": "Elevation of Privilege",
-                  "type": "Elevation of privilege"
-                }
-              ],
-              "attrs": {
-                ".element-shape": {
-                  "class": "element-shape hasOpenThreats isInScope"
-                },
-                "text": {
-                  "text": "Authorization Provider"
-                },
-                ".element-text": {
-                  "class": "element-text hasOpenThreats isInScope"
-                }
-              }
-            },
-            {
               "type": "tm.Boundary",
               "smooth": true,
               "source": {
@@ -251,7 +217,7 @@
               "type": "tm.Flow",
               "smooth": true,
               "source": {
-                "id": "2c3e140c-2c46-4471-a2ce-47c7bebada83"
+                "id": "944bdbe3-5c01-4e57-8784-5d604d8ef6a3"
               },
               "target": {
                 "id": "a4699c5a-d001-4c89-98ab-e8a2bf02ded1"
@@ -266,8 +232,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.34095682127858434,
-                    "offset": -7.391582961898497
+                    "distance": 0.4263638266194044,
+                    "offset": -25.58871980578763
                   },
                   "attrs": {
                     "text": {
@@ -296,7 +262,7 @@
                 "id": "a4699c5a-d001-4c89-98ab-e8a2bf02ded1"
               },
               "target": {
-                "id": "2c3e140c-2c46-4471-a2ce-47c7bebada83"
+                "id": "944bdbe3-5c01-4e57-8784-5d604d8ef6a3"
               },
               "vertices": [
                 {
@@ -308,8 +274,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.7642250755354522,
-                    "offset": -7.744421775243761
+                    "distance": 0.6249751601951806,
+                    "offset": -14.299815198448702
                   },
                   "attrs": {
                     "text": {
@@ -476,8 +442,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.3627962409000378,
-                    "offset": -4.227796625874782
+                    "distance": 0.42667761584984853,
+                    "offset": -30.161320336014473
                   },
                   "attrs": {
                     "text": {
@@ -518,8 +484,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.7011182961910944,
-                    "offset": 6.863512453893106
+                    "distance": 0.5835177017312961,
+                    "offset": -20.737830162787056
                   },
                   "attrs": {
                     "text": {
@@ -548,7 +514,7 @@
                 "id": "dd653184-ee5d-4062-9afd-42fb3af23c4c"
               },
               "target": {
-                "id": "2c3e140c-2c46-4471-a2ce-47c7bebada83"
+                "id": "944bdbe3-5c01-4e57-8784-5d604d8ef6a3"
               },
               "vertices": [
                 {
@@ -587,7 +553,7 @@
               "type": "tm.Flow",
               "smooth": true,
               "source": {
-                "id": "2c3e140c-2c46-4471-a2ce-47c7bebada83"
+                "id": "944bdbe3-5c01-4e57-8784-5d604d8ef6a3"
               },
               "target": {
                 "id": "dd653184-ee5d-4062-9afd-42fb3af23c4c"
@@ -666,6 +632,40 @@
               "id": "695989d0-488f-479e-b246-6cc27647b0be",
               "z": 21,
               "attrs": {}
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 544,
+                "y": 68
+              },
+              "angle": 0,
+              "id": "944bdbe3-5c01-4e57-8784-5d604d8ef6a3",
+              "z": 22,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "Elevation of Privilege",
+                  "type": "Elevation of privilege"
+                }
+              ],
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Authorization\nProvider"
+                },
+                ".element-text": {
+                  "class": "element-text hasOpenThreats isInScope"
+                }
+              }
             }
           ]
         },
